@@ -70,6 +70,7 @@ CompassCompiler.prototype.write = function (readTree, destDir) {
         var cp = spawn(cmd, args, {cwd: tmpDir})
 
         cp.on('error', function(err) {
+          //console.log('-1', err.constructor)
           console.error('[broccoli-ruby-compass] '+ err)
           reject(err)
         })
@@ -84,14 +85,14 @@ CompassCompiler.prototype.write = function (readTree, destDir) {
           }
 
           hasError = true
-          errors += data.toString('utf-8')
-          console.log('1', data, data.toString('utf-8'))
+          errors += data
+          //console.log('1', data, data.toString('utf-8'))
         })
 
         // BUG: got '\u001b[31m\u001b[0m'
         cp.stderr.on('data', function(data) {
-          console.log('2', data, data.toString('utf-8'))
-          errors += data.toString('utf-8')
+          //console.log('2', data, data.toString('utf-8'))
+          errors += data
         })
         /*
         */
@@ -99,11 +100,11 @@ CompassCompiler.prototype.write = function (readTree, destDir) {
         cp.on('close', function(code) {
           if (errors.length !== 0) {
             console.error('[broccoli-ruby-compass] ' + errors)
-            reject(errors)
+            //reject(errors)
           }
 
           if (code > 0) {
-            reject('broccoli-ruby-compass exited with error code ' + code)
+            //reject('broccoli-ruby-compass exited with error code ' + code)
           }
 
           var cssFile = path.join(destDir, self.outputFile)

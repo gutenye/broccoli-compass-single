@@ -1,13 +1,10 @@
 var compileSass = require('./index');
 var pickFiles = require('broccoli-static-compiler');
 
-var tree = pickFiles('tests/input', {
-  srcDir: '/',
-  destDir: '/'
-});
-
-tree = compileSass([tree], '/splitbutton.scss', '/assets/output.css', {
-  outputStyle: 'expanded'
+tree = compileSass(['.'], '/tests/styles/app.scss', '/assets/output.css', {
+  outputStyle: 'expanded',
+  imagesDir: 'tests/images',
+  generatedImagesDir: 'tests/public'
 });
 
 module.exports = tree

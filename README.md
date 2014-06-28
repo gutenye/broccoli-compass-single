@@ -8,7 +8,10 @@ The broccoli-ruby-compass plugin compiles `.scss` and `.sass` files with [compas
 
 ``` js
 var compileSass = require('broccoli-ruby-compass');
-var appCss = compileSass(sourceTrees, 'myapp/app.scss', 'assets/app.css');
+var appCss = compileSass(sourceTrees, 'myapp/app.scss', 'assets/app.css', {
+  imagesDir: 'myapp/images',
+  generatedImagesDir: 'myapp/public'
+});
 ```
 
 ### API

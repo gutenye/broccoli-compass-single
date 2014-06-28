@@ -1,0 +1,47 @@
+{
+  "name": "broccoli-ruby-compass",
+  "version": "0.0.1",
+  "description": "works out-of-box for ember-cli",
+  "main": "index.js",
+  "keywords": [
+    "broccoli-plugin",
+    "broccoli",
+    "compass",
+    "compiler",
+		"ember-cli"
+  ],
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha tests/broccoli-ruby-compass-test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gutenye/broccoli-ruby-compass"
+  },
+  "bugs": {
+    "url": "https://github.com/gutenye/broccoli-ruby-compass/issues"
+  },
+  "author": {
+    "name": "Guten Ye"
+  },
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "broccoli-writer": "^0.1.1",
+    "dargs": "^0.1.0",
+    "include-path-searcher": "^0.1.0",
+    "mkdirp": "^0.3.5",
+    "promise-map-series": "^0.2.0",
+    "rsvp": "^3.0.6",
+    "win-spawn": "^2.0.0"
+  },
+  "devDependencies": {
+    "broccoli": "^0.12.3",
+    "chai": "^1.9.1",
+    "chai-as-promised": "^4.1.1",
+    "mocha": "^1.18.2",
+    "rsvp": "^3.0.6"
+  }
+}

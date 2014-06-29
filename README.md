@@ -38,7 +38,7 @@ Fork ember-cli, and change it:
 
 ### Option 2
 
-Wait for ember-cli to be more mature, so that we don't need to directly change in on the source.
+Wait for ember-cli to be more mature, so that we don't need to directly modify the source code. Good news is ember-cli will introduce [custom options](https://github.com/stefanpenner/ember-cli/pull/1175#issuecomment-47300594) in the near feture.
 
 ### API
 

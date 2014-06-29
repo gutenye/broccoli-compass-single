@@ -54,7 +54,7 @@ var outputTree = compileSass(inputTrees, inputFile, outputFile, options);
 * **`outputFile`**: Relative path of the output CSS file.
 
 * **`options`**: A hash of options for compass. Supported options are
-  `importPath`, `imagesDir`, `javascriptsDir`, `fontsDir`, `config`, `outputStyle`
+  `importPath`, `imagesDir`, `generatedImagesDir`, `bundleExec`, `outputStyle`
 
 ## Install
 

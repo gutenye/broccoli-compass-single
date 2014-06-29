@@ -6,13 +6,40 @@ The broccoli-ruby-compass plugin compiles `.scss` and `.sass` files with [compas
 
 ## Get Started
 
-``` js
-var compileSass = require('broccoli-ruby-compass');
-var appCss = compileSass(sourceTrees, 'myapp/app.scss', 'assets/app.css', {
-  imagesDir: 'myapp/images',
-  generatedImagesDir: 'myapp/public'
-});
+### Options 1
+
+Fork ember-cli, and change it:
+
 ```
+# package.json
+
+  dependencies: {
+    "broccoli-ruby-compass": "gutenye/broccoli-ruby-compass"
+  }
+
+
+# lib/preprocessors.js
+
+  module.exports.setupRegistry = function(app) {
+    ...
+    registry.add('css', 'broccoli-ruby-compass', ['scss', 'sass']);
+
+# lib/broccoli/ember-app.js
+
+
+  EmberApp.prototype.styles = memoize(function() {
+    ...
+    var processedStyles = preprocessCss(stylesAndVendor, '/app/styles', '/assets', {
+      importPath: ['vendor/foundation/scss'],
+      bundleExec: true,
+      imagesDir: 'public/common/assets/images',
+      generatedImagesDir: 'public'
+    });
+```
+
+### Option 2
+
+Wait for ember-cli to be more mature, so that we don't need to directly change on the source.
 
 ### API
 

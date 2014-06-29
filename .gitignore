@@ -3,3 +3,4 @@
 /dist
 .sass-cache
 tests/public/icons-*.png
+compass.rb

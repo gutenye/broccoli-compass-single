@@ -48,55 +48,37 @@ CompassCompiler.prototype.write = function (readTree, destDir) {
       })
       self.compassOptions.importPath = self.compassOptions.importPath.concat(includePaths)
       var sassFile = includePathSearcher.findFileSync(self.inputFile, includePaths)
-      var tmpDir = path.dirname(sassFile)
+      var tmpDir = path.resolve(path.dirname(sassFile))
       var file = path.basename(self.inputFile)
 
       return new Promise(function(resolve, reject) {
-        // create a temporary config file if there are 'raw' options or
-        // settings not supported as CLI arguments
-        var configContext = compass.buildConfigContext(self.compassOptions);
-        // get the array of arguments for the compass command
-        var args = compass.buildArgsArray(file, self.compassOptions);
-        configContext(function (err, configFile) {
-          if (err) {
-            console.error(err)
-            reject(err)
-          }
+        // create a temporary config file for settings not supported as CLI arguments
+        var configContext = compass.buildConfigContext(self.compassOptions)
+        var args = compass.buildArgsArray(file, self.compassOptions)
+        configFile = configContext(tmpDir)
+        if (configFile) {
+          args.push('--config', configFile)
+        }
 
-          if (configFile) {
-            args.push('--config', configFile);
-          }
-
-          var cp = spawn(args.shift(), args, {cwd: tmpDir})
-          cp.stdout.pipe(process.stdout);
-          cp.stderr.pipe(process.stderr);
-          cp.on('close', function(code) {
-            if (code === 127) {
-              console.error(
-                'You need to have Ruby and Compass installed ' +
-                'and in your system PATH for this task to work. ' +
-                'More info: https://github.com/gruntjs/grunt-contrib-compass'
-              );
-              reject(code)
-            }
-
-            // `compass compile` exits with 1 and outputs "Nothing to compile"
-            // on stderr when it has nothing to compile.
-            // https://github.com/chriseppstein/compass/issues/993
-            // Don't fail the task in this situation.
-            if (code === 1 && !/Nothing to compile|Compass can't find any Sass files to compile/g.test(result.stderr)) {
-              console.error('↑');
-              reject(code)
-            }
-
-            var cssFile = path.join(destDir, self.outputFile)
-            var generatedFile = path.join(path.dirname(cssFile), path.basename(self.inputFile, path.extname(self.inputFile))) + '.css'
-            fs.renameSync(generatedFile, cssFile)
-
-            resolve(self._tmpDestDir)
-          })
-          return self._tmpDestDir
+        var cp = spawn(args.shift(), args, {cwd: tmpDir})
+        cp.stdout.pipe(process.stdout)
+        cp.stderr.pipe(process.stderr)
+        cp.on('error', function(data) {
+          console.error('[broccoli-ruby-compass] got an error while run compass command.')
+          reject(data)
         })
+        cp.on('close', function(code) {
+          if (code > 0) {
+            reject('[broccoli-ruby-compass] exited with error code ' + code)
+          }
+
+          var cssFile = path.join(destDir, self.outputFile)
+          var generatedFile = path.join(path.dirname(cssFile), path.basename(self.inputFile, path.extname(self.inputFile))) + '.css'
+          fs.renameSync(generatedFile, cssFile)
+
+          resolve(self._tmpDestDir)
+        })
+        return self._tmpDestDir
       })
     })
 }

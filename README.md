@@ -11,12 +11,6 @@ The broccoli-compass-single plugin compiles `.scss` and `.sass` files with [comp
 Fork ember-cli, and change it:
 
 ```
-# package.json
-
-  dependencies: {
-    "broccoli-compass-single": "gutenye/broccoli-compass-single"
-  }
-
 # lib/preprocessors.js
 
   module.exports.setupRegistry = function(app) {
@@ -33,6 +27,13 @@ Fork ember-cli, and change it:
       imagesDir: 'public/images',
       generatedImagesDir: 'dist/public'
     });
+
+# package.json
+
+  dependencies: {
+    "broccoli-compass-single": "gutenye/broccoli-compass-single"
+  }
+
 ```
 
 ### Option 2
@@ -42,7 +43,7 @@ Wait for ember-cli to be more mature, so that we don't need to directly change i
 ### API
 
 ``` js
-var outputTree = compileSass(inputTrees, inputFile, outputFile, options);
+var outputTree = compileCompass(inputTrees, inputFile, outputFile, options);
 ```
 
 * **`inputTrees`**: An array of trees that act as the include paths for

@@ -17,7 +17,6 @@ Fork ember-cli, and change it:
     "broccoli-ruby-compass": "gutenye/broccoli-ruby-compass"
   }
 
-
 # lib/preprocessors.js
 
   module.exports.setupRegistry = function(app) {
@@ -26,20 +25,19 @@ Fork ember-cli, and change it:
 
 # lib/broccoli/ember-app.js
 
-
   EmberApp.prototype.styles = memoize(function() {
     ...
     var processedStyles = preprocessCss(stylesAndVendor, '/app/styles', '/assets', {
       importPath: ['vendor/foundation/scss'],
       bundleExec: true,
-      imagesDir: 'public/common/assets/images',
-      generatedImagesDir: 'public'
+      imagesDir: 'public/images',
+      generatedImagesDir: 'dist/public'
     });
 ```
 
 ### Option 2
 
-Wait for ember-cli to be more mature, so that we don't need to directly change on the source.
+Wait for ember-cli to be more mature, so that we don't need to directly change in on the source.
 
 ### API
 

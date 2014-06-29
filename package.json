@@ -1,5 +1,5 @@
 {
-  "name": "broccoli-ruby-compass",
+  "name": "broccoli-compass-single",
   "version": "0.0.1",
   "description": "works out-of-box for ember-cli",
   "main": "index.js",
@@ -14,14 +14,14 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha tests/broccoli-ruby-compass-test.js"
+    "test": "mocha tests/broccoli-compass-single-test.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gutenye/broccoli-ruby-compass"
+    "url": "https://github.com/gutenye/broccoli-compass-single"
   },
   "bugs": {
-    "url": "https://github.com/gutenye/broccoli-ruby-compass/issues"
+    "url": "https://github.com/gutenye/broccoli-compass-single/issues"
   },
   "author": {
     "name": "Guten Ye"

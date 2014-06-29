@@ -64,12 +64,12 @@ CompassCompiler.prototype.write = function (readTree, destDir) {
         cp.stdout.pipe(process.stdout)
         cp.stderr.pipe(process.stderr)
         cp.on('error', function(data) {
-          console.error('[broccoli-ruby-compass] got an error while run compass command.')
+          console.error('[broccoli-compass-single] got an error while run compass command.')
           reject(data)
         })
         cp.on('close', function(code) {
           if (code > 0) {
-            reject('[broccoli-ruby-compass] exited with error code ' + code)
+            reject('[broccoli-compass-single] exited with error code ' + code)
           }
 
           var cssFile = path.join(destDir, self.outputFile)

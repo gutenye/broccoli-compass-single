@@ -9,7 +9,7 @@ chai.use(chaiAsPromised);
 
 var assert = chai.assert;
 
-describe('broccoli-ruby-compass', function() {
+describe('works', function() {
 
   var builtTo;
 

@@ -1,8 +1,8 @@
-# broccoli-ruby-compass
+# broccoli-compass-single
 
 It works out-of-box with `ember-cli`
 
-The broccoli-ruby-compass plugin compiles `.scss` and `.sass` files with [compass](https://github.com/Compass/compass).
+The broccoli-compass-single plugin compiles `.scss` and `.sass` files with [compass](https://github.com/Compass/compass).
 
 ## Get Started
 
@@ -14,14 +14,14 @@ Fork ember-cli, and change it:
 # package.json
 
   dependencies: {
-    "broccoli-ruby-compass": "gutenye/broccoli-ruby-compass"
+    "broccoli-compass-single": "gutenye/broccoli-compass-single"
   }
 
 # lib/preprocessors.js
 
   module.exports.setupRegistry = function(app) {
     ...
-    registry.add('css', 'broccoli-ruby-compass', ['scss', 'sass']);
+    registry.add('css', 'broccoli-compass-single', ['scss', 'sass']);
 
 # lib/broccoli/ember-app.js
 
@@ -60,10 +60,15 @@ var outputTree = compileSass(inputTrees, inputFile, outputFile, options);
 
 ``` bash
 gem install compass
-npm install --save-dev broccoli-ruby-compass
+
+# package.json
+
+  "devDependencies": {
+    "ember-cli": "your-fork/ember-cli"
+  }
 ```
 
 
 ## License
 
-[MIT](https://github.com/gutenye/broccoli-ruby-compass/blob/master/LICENSE.md)
+[MIT](https://github.com/gutenye/broccoli-compass-single/blob/master/LICENSE.md)
